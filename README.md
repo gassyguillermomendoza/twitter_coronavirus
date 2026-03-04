@@ -45,13 +45,19 @@ Given a reduced JSON file and a hashtag key, the visualizer generates a bar char
 ### `#코로나바이러스` — country distribution
 ![#코로나바이러스 country](reduced.all.country.코로나바이러스.png)
 
+## Hashtag Trends Over Time (Alternative Reduce)
+
+The alternative reduce step aggregates hashtag counts per day across the entire 2020 dataset and visualizes their usage over time. Each line represents a hashtag and shows how frequently it appeared in tweets throughout the year.
+
+![Hashtag Trends](alternative_reduce.png)
+
 ## Notes on reliability
 - The pipeline runs over the full year of daily archives; each output is derived from mapper outputs and then reduced, avoiding partial-file bias.
 - Because the dataset contains only geotagged tweets, counts reflect a consistent subset of Twitter activity rather than all tweets.
 
 ## How to reproduce (high level)
 1. Run the mapper on daily archives in parallel:
-   - `./run_maps.sh`
+   `$ ./run_maps.sh`
 2. Reduce yearly totals:
    - `python3 src/reduce.py --input_paths src/outputs/*.lang --output_path reduced.all.lang.json`
    - `python3 src/reduce.py --input_paths src/outputs/*.country --output_path reduced.all.country.json`
