@@ -57,12 +57,16 @@ The alternative reduce step aggregates hashtag counts per day across the entire 
 
 ## How to reproduce (high level)
 1. Run the mapper on daily archives in parallel:
-   `$ ./run_maps.sh`
+   ```
+   $ ./run_maps.sh
+   ```
 2. Reduce yearly totals:
-   - `python3 src/reduce.py --input_paths src/outputs/*.lang --output_path reduced.all.lang.json`
-   - `python3 src/reduce.py --input_paths src/outputs/*.country --output_path reduced.all.country.json`
+   ```
+   $ python3 src/reduce.py --input_paths src/outputs/*.lang --output_path reduced.all.lang.json
+   ```
+   > Note: To reduce yearly totals in terms of countries, replace the instances of `.lang` with `.country` in the code above. 
 3. Generate plots:
-   - `./src/visualize.py --input_path=reduced.all.lang.json --key='#coronavirus'`
-   - `./src/visualize.py --input_path=reduced.all.country.json --key='#coronavirus'`
-   - `./src/visualize.py --input_path=reduced.all.lang.json --key='#코로나바이러스'`
-   - `./src/visualize.py --input_path=reduced.all.country.json --key='#코로나바이러스'`
+   ```
+   $ ./src/visualize.py --input_path=reduced.all.country.json --key='#coronavirus'`
+   ```
+   > See note above. 
